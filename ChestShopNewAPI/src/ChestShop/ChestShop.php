@@ -22,7 +22,7 @@ class ChestShop extends PluginBase
 		if(EconomyAPI::getInstance()->getAPIVersion() == "5.7.1-2.alpha8"){ //Checking API version. Important for API Function Calls
 			$this->getLogger()->info(TextFormat::GREEN . "Enabled");
 		}else{
-			$this->getLogger()->alert(TextFormat::RED . "Plugin disabled. Please use MassiveEconomy");
+			$this->getLogger()->alert(TextFormat::RED . "Plugin disabled. Please use EconomyAPI");
 			$this->getPluginLoader()->disablePlugin($this);
 		}
 
