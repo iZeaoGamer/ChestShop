@@ -43,7 +43,7 @@ class DatabaseManager
 	* @param Block $chest
 	* @return bool
 	*/
-	public function registerShop($shopOwner, $saleNum, $price, $productID, $productMeta, $sign, $chest)
+	public function registerShop(string $shopOwner, int $saleNum, int $price,int  $productID, int $productMeta, Block $sign, Block $chest) : bool
 	{
 		return $this->database->exec("INSERT INTO ChestShop (shopOwner, saleNum, price, productID, productMeta, signX, signY, signZ, chestX, chestY, chestZ) VALUES ('$shopOwner', $saleNum, $price, $productID, $productMeta, $sign->x, $sign->y, $sign->z, $chest->x, $chest->y, $chest->z)");
 	}
@@ -52,7 +52,7 @@ class DatabaseManager
 	* @param array $condition
 	* @return array|false
 	*/
-	public function selectByCondition(array $condition)
+	public function selectByCondition(array $condition): array
 	{
 		$where = $this->formatCondition($condition);
 		return ($res = $this->database->query("SELECT * FROM ChestShop WHERE $where")) === false ? false : $res->fetchArray(SQLITE3_ASSOC);
@@ -62,7 +62,7 @@ class DatabaseManager
 	* @param array $condition
 	* @return bool
 	*/
-	public function deleteByCondition(array $condition)
+	public function deleteByCondition(array $condition): bool
 	{
 	$where = $this->formatCondition($condition);
 	return $this->database->exec("DELETE FROM ChestShop WHERE $where");
