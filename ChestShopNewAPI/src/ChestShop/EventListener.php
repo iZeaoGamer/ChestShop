@@ -89,7 +89,7 @@ class EventListener implements Listener
 					}			
 					
 					//Otherwise proceed with transaction
-					$buyerMoney = $this->plugin->getServer()->getPluginManager()->getPlugin("MassiveEconomy")->getMoney(strtolower($player->getName()));
+					$buyerMoney = $this->plugin->getServer()->getPluginManager()->getPlugin("EconomyAPI")->getMoney(strtolower($player->getName()));
 					if (!is_numeric($buyerMoney)) { // Checks for simple errors
 						$player->sendTip("§a[Shop]§r Couldn't acquire your money data!");
 						return;
@@ -117,7 +117,7 @@ class EventListener implements Listener
 					$saleNum = $shopInfo['saleNum'];
 					if($player->getGamemode() === 1){
 						if ($saleNum < 1) {
-							$this->plugin->getServer()->getPluginManager()->getPlugin("MassiveEconomy")->payMoneyToPlayer(strtolower($player->getName()), $price, strtolower($shopInfo['shopOwner']));
+							$this->plugin->getServer()->getPluginManager()->getPlugin("EconomyAPI")->payMoneyToPlayer(strtolower($player->getName()), $price, strtolower($shopInfo['shopOwner']));
 							$player->sendTip("§a[Shop]§r You donated {$price} to {$shopInfo["shopOwner"]}");
 							return;
 						}
@@ -158,7 +158,7 @@ class EventListener implements Listener
 							}
 						}
 					}
-					$this->plugin->getServer()->getPluginManager()->getPlugin("MassiveEconomy")->payMoneyToPlayer(strtolower($player->getName()), $price, strtolower($shopInfo['shopOwner']));
+					$this->plugin->getServer()->getPluginManager()->getPlugin("EconomyAPI")->payMoneyToPlayer(strtolower($player->getName()), $price, strtolower($shopInfo['shopOwner']));
 					if ($saleNum > 0){
 						$player->sendTip("§a[Shop]§r You bought {$saleNum} $productName from {$shopInfo["shopOwner"]} for {$price}" . MassiveEconomyAPI::getInstance()->getMoneySymbol());
 						if (($p = $this->plugin->getServer()->getPlayerExact($shopInfo["shopOwner"])) !== null) {
@@ -166,7 +166,7 @@ class EventListener implements Listener
 							$this->plugin->getServer()->getLogger()->debug("{$event->getPlayer()->getName()} bought from {$shopInfo["shopOwner"]}");
 						}
 					}else{
-						$player->sendTip("§a[Shop]§r Donated {$price}" . MassiveEconomyAPI::getInstance()->getMoneySymbol());
+						$player->sendTip("§a[Shop]§r Donated {$price}" . EconomyAPI::getInstance()->getMoneySymbol());
 						if (($p = $this->plugin->getServer()->getPlayerExact($shopInfo["shopOwner"])) !== null) {
 							$p->sendTip("§a[Shop]§r {$player->getName()} donated {$price}" . MassiveEconomyAPI::getInstance()->getMoneySymbol());
 						}
