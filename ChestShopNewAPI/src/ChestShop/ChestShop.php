@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
 
 //MassiveEconomy API Call
-use MassiveEconomy\MassiveEconomyAPI;
+use onebone\economyapi\EconomyAPI;
 
 class ChestShop extends PluginBase
 {
